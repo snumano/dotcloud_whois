@@ -1,0 +1,45 @@
+[% WRAPPER 'include/layout.tt' %]
+
+<div class="body">
+<form method="post" action="/result">
+
+<p>
+<textarea name="textarea" cols="30" rows="7"></textarea></p>
+
+<p>
+<input type="submit" value="submit">
+<input type="reset" value="reset">
+</p>
+</form>
+
+<ul>
+
+<li>site analysis:
+   <a href="http://news.netcraft.com/" target="_blank">NETCRAFT</a>,
+   <a href="http://www.alexa.com/" target="_blank">Alexa</a>,
+   <a href="http://www.markosweb.com/hosting/" target="_blank">SmartViper</a></li>
+</li>
+<li>ranking:
+   <a href="http://donnamedia.shoeisha.jp/" target="_blank">donnamedia</a>
+</li>
+
+<li>whois</li>
+ <ul>
+ <li>Domain:
+   <a href="http://whois.jprs.jp/" target="_blank">JPRS</a>,
+   <a href="http://whois.domaintools.com/" target="_blank">DOMAINTOOLS</a>
+ </li>
+ <li>IP:
+   <a href="http://www.nic.ad.jp/ja/whois/ja-gateway.html" target="_blank">JPNIC</a>,
+   <a href="http://wq.apnic.net/apnic-bin/whois.pl" target="_blank">APNIC</a>
+ </li>
+ <li>AS:
+   <a href="http://www.nic.ad.jp/ja/ip/irr/index.html" target="_blank">JPIRR</a>
+ </li>
+ </ul>
+
+</ul>
+
+</div>
+
+[% END %]

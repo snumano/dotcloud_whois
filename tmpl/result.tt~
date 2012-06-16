@@ -1,0 +1,55 @@
+[% WRAPPER 'include/layout.tt' %]
+
+<TABLE BORDER=1 ALIGN=left>
+ <TR>
+  <TH rowspan=\"2\">FQDN</TH>
+  <TH rowspan=\"2\">IP</TH>
+  <TH rowspan=\"2\">IP N</TH>
+  <TH rowspan=\"2\">CNAME</TH>
+  <TH colspan=\"8\">whois(Domain)</TH>
+  <TH colspan=\"3\">whois(IP)</TH>
+  <TH colspan=\"2\">whois(AS)</TH>
+ </TR>
+ <TR>
+  <TH>Domain</TH>
+  <TH>Organization(JPN)</TH>
+  <TH>Organization(ENG)</TH>
+  <TH>Contact(JPN)</TH>
+  <TH>Contact(ENG)</TH>
+  <TH>Email</TH>
+  <TH>Tel</TH>
+  <TH>Addrress</TH>
+  <TH>IP Prefix</TH>
+  <TH>Organization</TH>
+  <TH>上位情報</TH>
+  <TH>AS NUM</TH>
+  <TH>AS COMPANY</TH>
+ </TR>
+
+[% FOR result IN results %]
+ <TR>
+  <TD><A HREF=\"http://toolbar.netcraft.com/site_report?url=http://[% result.fqdn %]\" TARGET=\"_blank\">[% result.fqdn %]</A></TD>
+  <TD>[% result.addr %]</TD>
+  <TD><A HREF=\"http://www.ahref.org/app/nslookup/nslookup.cgi?host=[% result.fqdn %]\" TARGET=\"_blank\">[% result.count_addr %]</A></TD>
+  <TD>[% result.cname %]</TD>
+  <TD>[% result.domain2 %]</TD>
+  <TD>[% result.org1 %]</TD>
+  <TD>[% result.org2 %]</TD>
+  <TD>[% result.contact1 %]</TD>
+  <TD>[% result.contact2 %]</TD>
+  <TD>[% result.email %]</TD>
+  <TD>[% result.tel %]</TD>
+  <TD>[% result.address %]</TD>
+  <TD>[% result.ip_prefix %]</TD>
+  <TD>[% result.org_ip %]</TD>
+  <TD>[% result.ip_provider %]</TD>
+  <TD><A HREF=\"https://jpirr.nic.ad.jp/cgi-bin/search-object.pl?param=[% result.addr %]\" TARGET=\"_blank\">[% result.as %]</A></TD>
+  <TD>[% result.company_name %]</TD>
+ </TR>
+
+
+[% END %]
+
+</TABLE>
+
+[% END %]
