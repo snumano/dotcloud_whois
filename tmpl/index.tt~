@@ -4,7 +4,7 @@
 <form method="post" action="/result">
 
 <p>
-<textarea name="textarea" cols="30" rows="7" title="Please enter FQDN."></textarea></p>
+<textarea name="textarea" cols="30" rows="7"></textarea></p>
 
 <p>
 <input type="submit" value="submit">
