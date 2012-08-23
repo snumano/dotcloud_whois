@@ -486,7 +486,7 @@ sub whois{
     my $whois_out = `/usr/bin/whois -h jpirr.nic.ad.jp $addr`; # whoisサーバをRADBからJPIRRに変更。情報の信頼性向上
     my ($company_name,$as);
 
-    if($whois_out =~ /descr\:\s+(.+)\n(.*\n)*origin\:\s+(\w+)\n/){
+    if($whois_out =~ /descr\:\s+(.+)\n(.*\n)*origin\:\s+(\w+)\n/m){
         $company_name = $1; # 事業者名
         $as = $3;           # AS番号
     }
