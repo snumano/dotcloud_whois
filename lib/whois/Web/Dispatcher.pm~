@@ -295,14 +295,12 @@ sub whois_ip{
             eval {$result = $scraper->scrape($uri)};
         }
         elsif($whois_server =~ /^APNIC$/){
-            $result->{info} = `/usr/bin/whois $ip`;
-=pod
+#            $result->{info} = `/usr/bin/whois $ip`;
             $uri = URI->new("http://wq.apnic.net/apnic-bin/whois.pl?searchtext=$ip");
             $scraper = scraper {
-                process '/html/body/div/div[2]/form','info' => 'TEXT';
+                process '/html/body/div/div[2]/form/pre[3]','info' => 'TEXT';
             };
             eval {$result = $scraper->scrape($uri)};
-=cut
         }
 
 
@@ -483,7 +481,9 @@ sub whois{
     # 実際には「whois -h jpirr.nic.ad.jp <ip_addr>」を実行し、outputを利用
     my $addr = $_[0];
 #    my $whois_out = `/usr/bin/whois -h whois.radb.net $addr`;
-    my $whois_out = `/usr/bin/whois -h jpirr.nic.ad.jp $addr`; # whoisサーバをRADBからJPIRRに変更。情報の信頼性向上
+#    my $whois_out = `/usr/bin/whois -h jpirr.nic.ad.jp $addr`; # whoisサーバをRADBからJPIRRに変更。情報の信頼性向上
+    my $whois_out = `/usr/bin/curl http://jpirr.nic.ad.jp/cgi-bin/search-object.pl?param=$addr`; # whoisサーバをRADBからJPIRRに変更。情報の信頼性向上
+
     my ($company_name,$as);
 
     if($whois_out =~ /descr\:\s+(.+)\n(.*\n)*origin\:\s+(\w+)\n/m){

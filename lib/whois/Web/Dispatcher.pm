@@ -27,6 +27,7 @@ my $ip_prefix = '<BR>';
 my $org_ip = '<BR>';
 my $ip_provider = '<BR>';
 my $result;
+my $textarea = '';
 
 any '/' => sub {
     my ($c) = @_;
@@ -36,7 +37,7 @@ any '/' => sub {
 post '/result' => sub {
     my ($c) = @_;
 
-    if (my $textarea = $c->req->param('textarea')) {
+    if ($textarea = $c->req->param('textarea')) {
 	chomp($textarea);
 	my @strings = split(/\r\n/,$textarea);
 	
