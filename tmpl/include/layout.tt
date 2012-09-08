@@ -99,18 +99,11 @@ footer {
 
     </div>
 
-<div class="admob-area">
-<script type="text/javascript">
-var admob_vars = {
- pubid: 'a14da2f8d19ac73', // publisher id
- bgcolor: '000000', // background color (hex)
- text: 'FFFFFF', // font-color (hex)
- ama: false, // set to true and retain comma for the AdMob Adaptive Ad Unit, a special ad type designed for PC sites accessed from the iPhone.  More info: http://developer.admob.com/wiki/IPhone#Web_Integration
- test: false // test mode, set to false to receive live ads
-};
-</script>
-<script type="text/javascript" src="http://mmv.admob.com/static/iphone/iadmob.js"></script>
-</div>
+<script src='http://a.adimg.net/javascripts/AdLantisLoader.js' type='text/javascript' charset='utf-8'></script>
+<!-- Begin: Adlantis, Zone: [dotcloud whois] -->
+<div class='adlantiss_frame zid_WxfZrG9rrY7K30g5bi7xyg%3D%3D color_#0000FF-#000000-#F9F9F9-#999999-#008000 container_div autosize'></div>
+<!-- End: Adlantis -->
+
 
 </body>
 </html>
