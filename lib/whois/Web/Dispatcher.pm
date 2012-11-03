@@ -34,7 +34,7 @@ any '/' => sub {
     $c->render('index.tt');
 };
 
-post '/result' => sub {
+any '/result' => sub {
     my ($c) = @_;
 
     if ($textarea = $c->req->param('textarea')) {
