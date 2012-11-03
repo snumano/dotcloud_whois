@@ -34,7 +34,98 @@ any '/' => sub {
     $c->render('index.tt');
 };
 
-any '/result' => sub {
+get '/result' => sub {
+    my ($c) = @_;
+
+    if ($textarea = $c->req->param('textarea')) {
+	chomp($textarea);
+	my @strings = split(/\r\n/,$textarea);
+	
+	for (my $k=0;$k<=$#strings;$k++){
+	    $_ = $strings[$k];
+	    s/(.+)[\r\n]+/$1/;
+	    s/(http\:\/\/)(.+)/$2/;
+	    s/(.+?)(\/.*)/$1/;
+	    s/\s//g;
+	    if(/^$/){
+		last;
+	    }
+	    elsif(/\A\P{Cc}{4,100}/){
+		my ($addr,$count_addr,$company_name,$as,$cname) = &host2as($_);
+		$addr = "<BR>" if(!$addr);
+		$count_addr = "<BR>" if(!$count_addr);
+		$company_name = "<BR>" if(!$company_name);
+		$as = "<BR>" if(!$as);
+		
+		my @fqdn = split(/\./,$_);
+	      outer: for(my $i=0;$i<$#fqdn;$i++){
+		  $domain = "";
+		  
+		  for(my $j=$i;$j<=$#fqdn;$j++){
+		      $domain .= $fqdn[$j].".";
+		  }
+		  chop($domain);
+		  
+		  ($domain2,$org1,$org2,$contact1,$contact2,$email,$tel,$address) = &whois_domain($domain,'JPRS');
+		  if($org1 =~ /\<BR\>/ && $org2 =~ /\<BR\>/ && $contact1 =~ /\<BR\>/ && $contact2 =~ /\<BR\>/ && $email =~ /\<BR\>/ && $tel =~ /\<BR\>/ && $address =~ /\<BR\>/){
+		      ($domain2,$org1,$org2,$contact1,$contact2,$email,$tel,$address) = &whois_domain($domain,'NON-JPRS');
+		      if($org1 =~ /\<BR\>/ && $org2 =~ /\<BR\>/ && $contact1 =~ /\<BR\>/ && $contact2 =~ /\<BR\>/ && $email =~ /\<BR\>/ && $tel =~ /\<BR\>/ && $address =~ /\<BR\>/){
+			  
+			  if($org1 =~ /\<BR\>/ && $org2 =~ /\<BR\>/ && $contact1 =~ /\<BR\>/ && $contact2 =~ /\<BR\>/ && $email =~ /\<BR\>/ && $tel =~ /\<BR\>/ && $address =~ /\<BR\>/){
+#                       ($domain2,$org1,$org2,$contact1,$contact2,$email,$tel,$address) = &whois_domain($domain,'WHOIS');
+			      if($org1 =~ /\<BR\>/ && $org2 =~ /\<BR\>/ && $contact1 =~ /\<BR\>/ && $contact2 =~ /\<BR\>/ && $email =~ /\<BR\>/ && $tel =~ /\<BR\>/ && $address =~ /\<BR\>/){
+				  
+				  next outer;
+			      }
+			      else{
+				  last outer;
+			      }
+			  }
+			  else{
+			      last outer;
+			  }
+		      }
+		      else{
+			  last outer;
+		      }
+		  }
+		  else{
+		      last outer;
+		  }
+	      }
+		($ip_prefix,$org_ip,$ip_provider) = &whois_ip($addr,'JPNIC');
+		if($ip_prefix =~ /\<BR\>/ && $org_ip =~ /\<BR\>/ && $ip_provider =~ /\<BR\>/){
+		    ($ip_prefix,$org_ip,$ip_provider) = &whois_ip($addr,'APNIC');
+		}
+		
+		if($domain){
+		    $domain =~ s/">/" TARGET="_blank">/;
+		}
+
+		$result->[$k]->{fqdn} = $_;
+		$result->[$k]->{addr} = $addr;
+		$result->[$k]->{count_addr} = $count_addr;
+		$result->[$k]->{cname} = mark_raw($cname);
+		$result->[$k]->{domain2} = mark_raw($domain2);
+		$result->[$k]->{org1} = mark_raw($org1);
+		$result->[$k]->{org2} = mark_raw($org2);
+		$result->[$k]->{contact1} = mark_raw($contact1);
+		$result->[$k]->{contact2} = mark_raw($contact2);
+		$result->[$k]->{email} = mark_raw($email);
+		$result->[$k]->{tel} = mark_raw($tel);
+		$result->[$k]->{address} = mark_raw($address);
+		$result->[$k]->{ip_prefix} = mark_raw($ip_prefix);
+		$result->[$k]->{org_ip} = mark_raw($org_ip);
+		$result->[$k]->{ip_provider} = mark_raw($ip_provider);
+		$result->[$k]->{as} = $as;
+		$result->[$k]->{company_name} = mark_raw($company_name);
+	    }
+	}
+    }
+    $c->render('result.tt' => {results => $result,});
+};
+
+post '/result' => sub {
     my ($c) = @_;
 
     if ($textarea = $c->req->param('textarea')) {
