@@ -5,6 +5,7 @@ WriteMakefile(
     AUTHOR        => 'Some Person <person@example.com>',
     VERSION_FROM  => 'lib/whois.pm',
     PREREQ_PM     => {
+        'CPAN::Meta::Requirements'        => '0',
         'Amon2'                           => '3.31',
         'Text::Xslate'                    => '1.5006',
         'Test::More'                      => '0.98',
@@ -12,7 +13,6 @@ WriteMakefile(
         'DBD::SQLite'                     => '1.33',
         'HTML::FillInForm::Lite'          => '1.09',
         'JSON'                            => '2.50',
-        'CPAN::Meta::Requirements'        => '0',
         'Plack::Middleware::ReverseProxy' => '0.09',
         'Plack::Middleware::Session'      => '0',
         'Plack::Session'                  => '0.14',
