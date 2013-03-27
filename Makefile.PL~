@@ -12,7 +12,6 @@ WriteMakefile(
         'DBD::SQLite'                     => '1.33',
         'HTML::FillInForm::Lite'          => '1.09',
         'JSON'                            => '2.50',
-        'CPAN::Meta::Requirements'        => '0',
         'Plack::Middleware::ReverseProxy' => '0.09',
         'Plack::Middleware::Session'      => '0',
         'Plack::Session'                  => '0.14',
