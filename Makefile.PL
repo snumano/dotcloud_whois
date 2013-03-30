@@ -5,6 +5,7 @@ WriteMakefile(
     AUTHOR        => 'Some Person <person@example.com>',
     VERSION_FROM  => 'lib/whois.pm',
     PREREQ_PM     => {
+        'CPAN::Meta::Requirements'        => '0',
         'Plack::Runner'                   => '0',
         'Amon2'                           => '3.31',
         'Text::Xslate'                    => '1.5006',
