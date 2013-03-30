@@ -1,3 +1,5 @@
+requires 'Starman'                         ,'0';
+requires 'Plack::Runner'                   ,'0';
 requires 'Amon2'                           ,'3.31';
 requires 'Text::Xslate'                    ,'1.5006';
 requires 'Test::More'                      ,'0.98';
