@@ -1,3 +1,5 @@
+requires 'Plack', '1.0000';
+requires 'DBI', '1.6';
 requires 'Starman'                         ,'0';
 requires 'Plack::Runner'                   ,'0';
 requires 'Amon2'                           ,'3.31';
