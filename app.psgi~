@@ -8,7 +8,7 @@ use Plack::Builder;
 
 use whois::Web;
 use whois;
-#use Plack::Session::Store::DBI;
+use Plack::Session::Store::DBI;
 use Plack::Session::State::Cookie;
 use DBI;
 

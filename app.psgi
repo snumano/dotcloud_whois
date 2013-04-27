@@ -16,7 +16,7 @@ use DBI;
     my $c = whois->new();
     $c->setup_schema();
 }
-#my $db_config = whois->config->{DBI} || die "Missing configuration for DBI";
+my $db_config = whois->config->{DBI} || die "Missing configuration for DBI";
 builder {
     enable 'Plack::Middleware::Static',
         path => qr{^(?:/static/)},
@@ -28,8 +28,8 @@ builder {
     enable 'Plack::Middleware::Session',
         store => Plack::Session::Store::DBI->new(
             get_dbh => sub {
-#                DBI->connect( @$db_config )
-#                    or die $DBI::errstr;
+                DBI->connect( @$db_config )
+                    or die $DBI::errstr;
             }
         ),
         state => Plack::Session::State::Cookie->new(
