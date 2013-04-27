@@ -1,2 +1,9 @@
 www:
   type: perl
+  requirements:
+    - Plack
+    - Plack::Session
+    - Amon2
+    - Amon2::Plugin::DBI
+    - Amon2::DBI
+    - HTML::FillInForm::Lite
