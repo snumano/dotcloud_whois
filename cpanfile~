@@ -1,3 +1,4 @@
+requires  'CPAN::Meta::Requirements', '0';
 requires  'Plack', '0';
 requires  'Plack::Runner', '0';
 requires  'Plack::Session', '0'; 

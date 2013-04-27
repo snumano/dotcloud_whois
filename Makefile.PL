@@ -25,6 +25,7 @@ WriteMakefile(
         'URI'                             => '0',
         'Encode'                          => '0',
         'Text::Xslate::Util'              => '0',
+        'RPC::PlServer'                   => '0',
     },
     MIN_PERL_VERSION => '5.008001',
     (-d 'xt' and $ENV{AUTOMATED_TESTING} || $ENV{RELEASE_TESTING}) ? (

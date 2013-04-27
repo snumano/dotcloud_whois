@@ -19,3 +19,4 @@ requires  'Web::Scraper', '0';
 requires  'URI', '0';
 requires  'Encode', '0';
 requires  'Text::Xslate::Util', '0';
+requires  'RPC::PlServer', '0';

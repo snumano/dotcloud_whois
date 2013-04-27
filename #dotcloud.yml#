@@ -8,4 +8,3 @@ www:
     - Amon2::DBI
     - HTML::FillInForm::Lite
     - CPAN::Meta::Requirements
-    - RPC::PlServer
